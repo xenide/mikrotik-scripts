@@ -3,7 +3,10 @@ import ipaddress
 import re
 from dotenv import load_dotenv
 import os
+import pyperclip
 import qrcode
+from PIL import Image
+import io
 
 # Load environment variables
 load_dotenv()
@@ -89,9 +92,10 @@ new_peer_props['private-key'] = "auto"
 # --- CREATE NEW WIREGUARD PEER --- #
 new_peer = peers_resource.add(**new_peer_props)
 if not new_peer.done:
+    print("New peer successfully created!")
+else:
     print("Failed to create new peer")
     exit(1)
-
 new_peer_id = new_peer.done_message['ret']
 
 # --- EXPORT QR CODE --- #
@@ -100,8 +104,24 @@ new_peer_id = new_peer.done_message['ret']
 qr_result = peers_resource.call("show-client-config", {".id": new_peer_id})
 data = qr_result[0]['conf']
 
-# Create and show the QR code
-qr_img = qrcode.make(data)
-qr_img.show()
+# Generate QR code image
+qr = qrcode.QRCode(version=1, box_size=10, border=5)
+qr.add_data(data)
+qr.make(fit=True)
+qr_image = qr.make_image(fill_color="black", back_color="white")
+
+# Convert the image to bytes so we can put it on the clipboard
+img_byte_arr = io.BytesIO()
+qr_image.save(img_byte_arr, format='PNG')
+img_byte_arr.seek(0)
+
+# On macOS, we need to use pbcopy to copy the image to clipboard
+with open('/tmp/wireguard_qr.png', 'wb') as f:
+    f.write(img_byte_arr.getvalue())
+
+os.system('osascript -e \'tell application "System Events" to set the clipboard to (read (POSIX file "/tmp/wireguard_qr.png") as TIFF picture)\'')
+os.remove('/tmp/wireguard_qr.png')  # Clean up the temporary file
+
+print("WireGuard QR code has been copied to clipboard as an image!")
 
 connection.disconnect()
