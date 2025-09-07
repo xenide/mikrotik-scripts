@@ -7,7 +7,7 @@ description = "Cross-platform colored terminal text."
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 groups = ["main"]
-markers = "platform_system == \"Windows\""
+markers = "sys_platform == \"win32\""
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
@@ -163,14 +163,14 @@ files = [
 
 [[package]]
 name = "python-dotenv"
-version = "1.0.0"
+version = "1.1.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "python-dotenv-1.0.0.tar.gz", hash = "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba"},
-    {file = "python_dotenv-1.0.0-py3-none-any.whl", hash = "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"},
+    {file = "python_dotenv-1.1.1-py3-none-any.whl", hash = "sha256:31f23644fe2602f88ff55e1f5c79ba497e01224ee7737937930c448e4d0e24dc"},
+    {file = "python_dotenv-1.1.1.tar.gz", hash = "sha256:a8a6399716257f45be6a007360200409fce5cda2661e3dec71d23dc15f6189ab"},
 ]
 
 [package.extras]
@@ -178,27 +178,23 @@ cli = ["click (>=5.0)"]
 
 [[package]]
 name = "qrcode"
-version = "7.4.2"
+version = "8.2"
 description = "QR Code image generator"
 optional = false
-python-versions = ">=3.7"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "qrcode-7.4.2-py3-none-any.whl", hash = "sha256:581dca7a029bcb2deef5d01068e39093e80ef00b4a61098a2182eac59d01643a"},
-    {file = "qrcode-7.4.2.tar.gz", hash = "sha256:9dd969454827e127dbd93696b20747239e6d540e082937c90f14ac95b30f5845"},
+    {file = "qrcode-8.2-py3-none-any.whl", hash = "sha256:16e64e0716c14960108e85d853062c9e8bba5ca8252c0b4d0231b9df4060ff4f"},
+    {file = "qrcode-8.2.tar.gz", hash = "sha256:35c3f2a4172b33136ab9f6b3ef1c00260dd2f66f858f24d88418a015f446506c"},
 ]
 
 [package.dependencies]
-colorama = {version = "*", markers = "platform_system == \"Windows\""}
-pypng = "*"
-typing-extensions = "*"
+colorama = {version = "*", markers = "sys_platform == \"win32\""}
 
 [package.extras]
-all = ["pillow (>=9.1.0)", "pytest", "pytest-cov", "tox", "zest.releaser[recommended]"]
-dev = ["pytest", "pytest-cov", "tox"]
-maintainer = ["zest.releaser[recommended]"]
+all = ["pillow (>=9.1.0)", "pypng"]
 pil = ["pillow (>=9.1.0)"]
-test = ["coverage", "pytest"]
+png = ["pypng"]
 
 [[package]]
 name = "routeros-api"
@@ -227,4 +223,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "9e972829ee6b2b24e94752143a5e4e3b0e3530f7a8abbbff9b343ff5cd7d6541"
+content-hash = "b080ad1892e764ad04d89af6db96f7b8d6355894909a8306e5c74b7c3fad01eb"
