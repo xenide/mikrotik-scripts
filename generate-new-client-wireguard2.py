@@ -91,7 +91,7 @@ new_peer_props['private-key'] = "auto"
 
 # --- CREATE NEW WIREGUARD PEER --- #
 new_peer = peers_resource.add(**new_peer_props)
-if not new_peer.done:
+if new_peer.done:
     print("New peer successfully created!")
 else:
     print("Failed to create new peer")
