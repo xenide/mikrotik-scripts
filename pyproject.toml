@@ -1,24 +1,30 @@
-[tool.poetry]
+[project]
 name = "wg-create-new-client"
 version = "0.1.0"
 description = "Utility script to create a new WireGuard client on a MikroTik router and export its configuration as a QR code."
-authors = ["Alex L"]
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.10"
+authors = [{ name = "Alex L" }]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-pillow = "11.3.0"
-pyperclip = "1.9.0"
-pypng = "0.20220715.0"
-python-dotenv = "^1.0.0"
-qrcode = "^8.0.0"
-RouterOS-api = "0.21.0"
-typing_extensions = "4.15.0"
+# Runtime dependencies
+dependencies = [
+    "pillow==11.3.0",
+    "pyperclip==1.9.0",
+    "pypng==0.20220715.0",
+    "python-dotenv>=1.0.0",
+    "qrcode>=8.0.0",
+    "RouterOS-api==0.21.0",
+    "typing_extensions==4.15.0",
+]
 
-[tool.poetry.group.dev.dependencies]
-# Add development-only dependencies here, e.g. linters, formatters, etc.
+[project.optional-dependencies]
+# Development-only dependencies can be added here, for example: ruff, pytest, etc.
+# Example:
+# dev = [
+#     "ruff",
+#     "pytest",
+# ]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
