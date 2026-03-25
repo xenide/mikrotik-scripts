@@ -80,6 +80,7 @@ new_peer_props.pop("current-endpoint-port", None)
 new_peer_props.pop("tx", None)
 new_peer_props.pop("rx", None)
 new_peer_props.pop("dynamic", None)
+new_peer_props.pop("last-handshake", None)
 
 # Instruct the router to generate a new pre-shared key.
 # This may involve setting a flag; adjust the parameter key based on your router's configuration.
